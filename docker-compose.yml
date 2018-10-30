@@ -1,0 +1,18 @@
+nginx:
+  image: nginx:1.15.3-alpine
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - ./config/nginx:/etc/nginx/conf.d
+  links:
+    - app1:app1
+    - app2:app2
+app1:
+  build: ./app1
+  volumes:
+    - ./app1:/usr/src/app1
+app2:
+  build: ./app2
+  volumes:
+    - ./app2:/usr/src/app2
